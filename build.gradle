@@ -86,3 +86,7 @@ clean.dependsOn cleanProtoGen
 kapt {
     generateStubs = false
 }
+
+bootRepackage  {
+    executable = true
+}

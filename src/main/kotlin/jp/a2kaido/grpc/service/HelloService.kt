@@ -1,9 +1,9 @@
 package jp.a2kaido.grpc.service
 
-import io.grpc.examples.helloworld.GreeterGrpc
-import io.grpc.examples.helloworld.HelloReply
-import io.grpc.examples.helloworld.HelloRequest
 import io.grpc.stub.StreamObserver
+import jp.a2kaido.helloworld.GreeterGrpc
+import jp.a2kaido.helloworld.HelloReply
+import jp.a2kaido.helloworld.HelloRequest
 import org.lognet.springboot.grpc.GRpcService
 
 /**
