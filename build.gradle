@@ -18,12 +18,11 @@ buildscript {
 
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'application'
 
-def grpcVersion = '1.2.0'
+def grpcVersion = '1.5.0'
 
 repositories {
     mavenCentral()
@@ -52,7 +51,7 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.2.0'
+        artifact = 'com.google.protobuf:protoc:3.3.0'
     }
     plugins {
         grpc {
@@ -82,10 +81,6 @@ task cleanProtoGen {
     }
 }
 clean.dependsOn cleanProtoGen
-
-kapt {
-    generateStubs = false
-}
 
 bootRepackage  {
     executable = true
