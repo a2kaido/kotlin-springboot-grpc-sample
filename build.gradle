@@ -32,12 +32,11 @@ repositories {
 sourceSets {
     main.kotlin.srcDirs += 'src/main/kotlin'
     main.java.srcDirs += 'src/main/java'
-    main.java.srcDirs += 'src/main/protoGen'
+    main.java.srcDirs += 'src/main/generated-proto'
 }
 
 dependencies {
-    // grpc
-    compile "io.grpc:grpc-netty:${grpcVersion}"
+    // compile "io.grpc:grpc-netty:${grpcVersion}"
     compile "io.grpc:grpc-protobuf:${grpcVersion}"
     compile "io.grpc:grpc-stub:${grpcVersion}"
 
@@ -59,28 +58,25 @@ protobuf {
         }
     }
     generateProtoTasks {
-        ofSourceSet('main').each { task ->
+        all().each { task ->
             task.builtins {
                 java {
-                    outputSubDir = 'protoGen'
+                    outputSubDir = 'generated-proto'
                 }
             }
             task.plugins {
                 grpc {
-                    outputSubDir = 'protoGen'
+                    outputSubDir = 'generated-proto'
                 }
             }
         }
     }
-    generatedFilesBaseDir = "$projectDir/src/"
+    generatedFilesBaseDir = "${projectDir}/src/"
 }
 
-task cleanProtoGen {
-    doFirst{
-        delete("$projectDir/src/main/protoGen")
-    }
+clean {
+    delete "${projectDir}/src/main/generated-proto"
 }
-clean.dependsOn cleanProtoGen
 
 bootRepackage  {
     executable = true
